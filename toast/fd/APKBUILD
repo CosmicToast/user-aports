@@ -1,0 +1,41 @@
+# Contributor: Chloe Kudryavtsev <toast@toastin.space>
+# Maintainer: Chloe Kudryavtsev <toast@toastin.space>
+pkgname=fd
+pkgver=7.2.0
+pkgrel=0
+pkgdesc="A simple, fast and user-friendly alternative to 'find'"
+url="https://github.com/sharkdp/fd"
+arch="all"
+license="MIT"
+depends=""
+makedepends="cargo"
+install=""
+subpackages="$pkgname-doc"
+source="$pkgname-$pkgver.tar.gz::https://github.com/sharkdp/$pkgname/archive/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+
+build() {
+	cd "$builddir"
+	export CARGO_HOME="$srcdir"/cargo
+	export RUSTFLAGS="-C target-feature=-crt-static"
+	cargo build \
+		--release \
+		--verbose
+}
+
+check() {
+	cd "$builddir"
+	export CARGO_HOME="$srcdir"/cargo
+	export RUSTFLAGS="-C target-feature=-crt-static"
+	cargo test \
+		--release \
+		--verbose
+}
+
+package() {
+	cd "$builddir"
+	install -m755 -D target/release/fd "$pkgdir/usr/bin/$pkgname"
+	install -m644 -D doc/fd.1 "$pkgdir/usr/share/man/man1/$pkgname.1"
+}
+
+sha512sums="22823904e4a1645a6f248501e507cad6ef08341ac69d0e9675571a202fa2316fe6c85b274fc958676da6a8e26399b26bdb78fdca876146b0e91b4780948d8ca2  fd-7.2.0.tar.gz"
