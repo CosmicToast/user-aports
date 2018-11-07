@@ -42,6 +42,7 @@ package() {
 }
 
 openrc() {
+	mkdir -p "$subpkgdir"
 	mv "$pkgdir/etc" "$subpkgdir/"
 }
 sha512sums="beea4b8dd04e00662ef380442f8249c2d2dadf6d35b90e415038df807c8d08295d2575efbf3265f48f5e92afa174135a9c662f74d52545dd3e1c55a1436aa5bb  ferm-2.4.1.tar.xz
