@@ -39,6 +39,7 @@ package() {
 }
 
 openrc() {
+	mkdir -p "$subpkgdir"
 	mv "$pkgdir/etc" "$subpkgdir/"
 }
 sha512sums="216ab774ac2cc8b54fb8f2155738fd41264b261efd5a7ab95d9910aad5b9699065f42211dbe8021383f0172bfb50cfc9087ea8dc1e53a2223dabd7faf490769c  spampd.confd
