@@ -2,7 +2,7 @@
 # Maintainer: Chloe Kudryavtsev <toast@toastin.space>
 pkgname=fd
 pkgver=7.2.0
-pkgrel=0
+pkgrel=1
 pkgdesc="A simple, fast and user-friendly alternative to 'find'"
 url="https://github.com/sharkdp/fd"
 arch="all"
@@ -27,7 +27,7 @@ check() {
 	cd "$builddir"
 	export CARGO_HOME="$srcdir"/cargo
 	export RUSTFLAGS="-C target-feature=-crt-static"
-	cargo test \
+	cargo test --all \
 		--release \
 		--verbose
 }
