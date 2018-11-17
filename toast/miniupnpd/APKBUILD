@@ -2,7 +2,7 @@
 # Maintainer: Chloe Kudryavtsev <toast@toastin.space>
 pkgname=miniupnpd
 pkgver=2.1
-pkgrel=0
+pkgrel=1
 pkgdesc="Lightweight UPnP IGD daemon"
 url="http://miniupnp.free.fr"
 arch="all"
@@ -55,5 +55,5 @@ package() {
 }
 
 sha512sums="c737faad21bfba1f59346cbe0082d24827f36c0422cfaa5e71180aa9f61e784eb19ea9d6abf2d005f92d4cde106eac8c66ecc88b30421de710f3c129ac15f4ae  miniupnpd-2.1.tar.gz
-a25b2a444cde623fbdbe6fb26c544614cceb2cc1262a0409f40286f4c69b70ba1c05e55815552a12b0624b16ddd48d3e424dad18b278ff9da04bac335feb1d45  miniupnpd.initd
+4c4fecb58fd3b072fe514a9245dfaee7a7a7a7ff4e78db79a306320f7593d776d7a3c7a390538d417c40c3d584e2ac1eb0e9f56fdd30d7361d60ad8ac47fecc5 miniupnpd.initd
 81aa2dac0643bbd1331549427c438900319adce91928b6bad6f7d470492f6f48e04e4d1af89f961db53fc132a7ff89ea52625441f051afd5a1b48680917f4ff7  miniupnpd.confd"
