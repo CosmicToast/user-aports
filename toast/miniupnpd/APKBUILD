@@ -10,6 +10,7 @@ license="BSD-3-Clause"
 depends=""
 depends_dev=""
 makedepends="$depends_dev bsd-compat-headers iptables-dev libnfnetlink-dev"
+options="!check"
 install=""
 subpackages="$pkgname-doc $pkgname-openrc"
 source="http://miniupnp.free.fr/files/miniupnpd-$pkgver.tar.gz
