@@ -4,8 +4,8 @@ pidfile="/run/${RC_SVCNAME}.pid"
 command_args="$ARGS"
 
 depend() {
-	need net firewall
-	use minissdpd
+    need net firewall
+    use minissdpd
 }
 
 start_pre() {
