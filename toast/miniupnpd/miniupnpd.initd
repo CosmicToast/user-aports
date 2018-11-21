@@ -1,7 +1,7 @@
 #!/sbin/openrc-run
 command="/usr/sbin/miniupnpd"
 pidfile="/run/${RC_SVCNAME}.pid"
-command_args="$ARGS"
+command_args="$ARGS -P $pidfile"
 
 depend() {
     need net firewall
