@@ -13,5 +13,5 @@ start_pre() {
 }
 
 stop_post() {
-    /etc/miniupnpd/iptables_removall.sh
+    /etc/miniupnpd/iptables_removeall.sh
 }
