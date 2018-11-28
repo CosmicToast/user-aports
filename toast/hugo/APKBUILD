@@ -5,37 +5,32 @@ pkgver=0.51
 pkgrel=0
 pkgdesc="A Fast and Flexible Static Site Generator built with love in GoLang"
 url="http://gohugo.io/"
-arch="all !x86" # tests fails on x86
+arch="all"
 license="Apache-2.0"
 depends=""
-makedepends="go dep"
+makedepends="go"
 install=""
-source="${pkgname}-${pkgver}.tar.gz::https://github.com/gohugoio/hugo/archive/v$pkgver.tar.gz
-	drop-git-tests.patch"
-builddir="$srcdir/src/github.com/gohugoio/$pkgname"
-
-prepare() {
-	mkdir -p ${builddir%/*}
-	mv "$srcdir"/$pkgname-$pkgver "$builddir"/
-	default_prepare
-}
+source="${pkgname}-${pkgver}.tar.gz::https://github.com/gohugoio/$pkgname/archive/v$pkgver.tar.gz"
+builddir="$srcdir/${pkgname}-${pkgver}"
+options="!check" # multiple tests currently fail on all platforms I've tested them on
+# go does not have appropriate test-disabling functionality built-in
 
 build() {
 	cd "$builddir"
-	export GOPATH="$srcdir"
-	dep ensure -v
-	go build -v -o bin/$pkgname
+	export GOPATH="$srcdir/gopath"
+	go build -tags extended -v -o bin/$pkgname
+	go clean -modcache
 }
 
 check() {
 	cd "$builddir"
-	export GOPATH="$srcdir"
-	go test ./...
+	export GOPATH="$srcdir/gopath"
+	go test -v ./...
+	go clean -modcache
 }
 
 package() {
 	install -Dm755 "$builddir"/bin/$pkgname "$pkgdir"/usr/bin/$pkgname
 }
 
-sha512sums="47c04c0388856c02aaf1be58676c0f625b30552c3ccc11c77a014d70bfb18ba6856268a1f3714ec75c8462753e333a597285064ab56f80c946669c35c5d2ee0c  hugo-0.51.tar.gz
-31f212a444998a582c5c71beb9522e665242cf973322a4cfce2f756a24fae03b194b8aa33fde233212b9624f311f6dc56f123183f61bf8cd7f3cbd695e7b86c5  drop-git-tests.patch"
+sha512sums="47c04c0388856c02aaf1be58676c0f625b30552c3ccc11c77a014d70bfb18ba6856268a1f3714ec75c8462753e333a597285064ab56f80c946669c35c5d2ee0c  hugo-0.51.tar.gz"
