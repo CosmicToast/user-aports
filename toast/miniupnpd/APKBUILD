@@ -2,7 +2,7 @@
 # Maintainer: Chloe Kudryavtsev <toast@toastin.space>
 pkgname=miniupnpd
 pkgver=2.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Lightweight UPnP IGD daemon"
 url="http://miniupnp.free.fr"
 arch="all"

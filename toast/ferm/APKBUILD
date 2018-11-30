@@ -2,7 +2,7 @@
 # Maintainer: Chloe Kudryavtsev <toast@toastin.space>
 pkgname=ferm
 pkgver=2.4.1
-pkgrel=1
+pkgrel=2
 pkgdesc="firewall configuration tool"
 url="http://ferm.foo-projects.org/"
 arch="noarch"
