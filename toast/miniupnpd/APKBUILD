@@ -55,12 +55,6 @@ package() {
 
 }
 
-openrc() {
-	mkdir -p "$subpkgdir/etc"
-	mv "$pkgdir/etc/conf.d" "$subpkgdir/etc/"
-	mv "$pkgdir/etc/init.d" "$subpkgdir/etc/"
-}
-
 sha512sums="c737faad21bfba1f59346cbe0082d24827f36c0422cfaa5e71180aa9f61e784eb19ea9d6abf2d005f92d4cde106eac8c66ecc88b30421de710f3c129ac15f4ae  miniupnpd-2.1.tar.gz
 038bedc424e03f38a4d493c05af54a7c3ee4669f50710dcfe126e224433beeabae1aa3d04632e2743b44f63b7b2fd2805c240cfa0c9790fdf5a5777a548e1543 miniupnpd.initd
 81aa2dac0643bbd1331549427c438900319adce91928b6bad6f7d470492f6f48e04e4d1af89f961db53fc132a7ff89ea52625441f051afd5a1b48680917f4ff7  miniupnpd.confd"
