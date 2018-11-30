@@ -1,7 +1,7 @@
-# Contributor: Thomas Boerger <thomas@webhippie.de>
-# Maintainer: Thomas Boerger <thomas@webhippie.de>
+# Contributor: Chloe Kudryavtsev <toast@toastin.space>
+# Maintainer: Chloe Kudryavtsev <toast@toastin.space>
 pkgname=hugo
-pkgver=0.51
+pkgver=0.52
 pkgrel=0
 pkgdesc="A Fast and Flexible Static Site Generator built with love in GoLang"
 url="http://gohugo.io/"
@@ -33,4 +33,4 @@ package() {
 	install -Dm755 "$builddir"/bin/$pkgname "$pkgdir"/usr/bin/$pkgname
 }
 
-sha512sums="47c04c0388856c02aaf1be58676c0f625b30552c3ccc11c77a014d70bfb18ba6856268a1f3714ec75c8462753e333a597285064ab56f80c946669c35c5d2ee0c  hugo-0.51.tar.gz"
+sha512sums="45baf7d3b98b7ed5aee7a8d154a87d32f89a56cd00cff48f21d5c69bef7f13ebd9726885885ce74f9c65587669090ce613ae5bb3652a9e1dd3a47a69faa44272  hugo-0.52.tar.gz"
