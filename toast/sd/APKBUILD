@@ -1,0 +1,40 @@
+# Contributor: Chloe Kudryavtsev <toast@toastin.space>
+# Maintainer: Chloe Kudryavtsev <toast@toastin.space>
+pkgname=sd
+pkgver=0.4.3
+pkgrel=0
+pkgdesc="Intuitive find & replace CLI"
+url="https://github.com/chmln/sd"
+arch="all"
+license="MIT"
+depends=""
+makedepends="cargo"
+install=""
+subpackages=""
+source="$pkgname-$pkgver.tar.gz::https://github.com/chmln/$pkgname/archive/$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+
+build() {
+	cd "$builddir"
+	export CARGO_HOME="$srcdir"/cargo
+	export RUSTFLAGS="-C target-feature=-crt-static"
+	cargo build \
+		--release \
+		--verbose
+}
+
+check() {
+	cd "$builddir"
+	export CARGO_HOME="$srcdir"/cargo
+	export RUSTFLAGS="-C target-feature=-crt-static"
+	cargo test --all \
+		--release \
+		--verbose
+}
+
+package() {
+	cd "$builddir"
+	install -Dm755 target/release/sd "$pkgdir"/usr/bin/"$pkgname"
+}
+
+sha512sums="14fc60e7b50654e8e9ad0504d7e5d55e300e443d67a30c50dfa4484fb2bba547f92ff7c35b10bb366287dbcd40bda91f28a03584ec685b5d6cfefca53b86a5a3  sd-0.4.3.tar.gz"
