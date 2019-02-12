@@ -1,0 +1,90 @@
+# Contributor: Chloe Kudryavtsev <toast@toastin.space>
+# Maintainer: Chloe Kudryavtsev <toast@toastin.space>
+pkgname=skim
+pkgver=0.5.2
+pkgrel=0
+pkgdesc="Fuzzy finder in rust"
+url="https://github.com/lotabout/skim"
+arch="all"
+license="MIT"
+depends=""
+makedepends="cargo"
+install=""
+# TODO: next release, add -doc
+subpackages="
+	$pkgname-tmux
+	$pkgname-vim-plugin:vim:noarch
+	$pkgname-bash-completion:bash:noarch
+	$pkgname-zsh-completion:zsh:noarch
+	$pkgname-bash-keybinds:bashkey:noarch
+	$pkgname-fish-keybinds:fishkey:noarch
+	$pkgname-zsh-keybinds:zshkey:noarch
+	"
+source="$pkgname-$pkgver.tar.gz::https://github.com/lotabout/skim/archive/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+
+build() {
+	cd "$builddir"
+	export CARGO_HOME="$srcdir"/cargo
+	export RUSTFLAGS="-C target-feature=-crt-static"
+	cargo build \
+		--release \
+		--verbose
+}
+
+check() {
+	cd "$builddir"
+	export CARGO_HOME="$srcdir"/cargo
+	export RUSTFLAGS="-C target-feature=-crt-static"
+	cargo test --all \
+		--release \
+		--verbose
+}
+
+package() {
+	cd "$builddir"
+	install -Dm755 target/release/sk bin/sk-tmux -t "$pkgdir"/usr/bin
+	# TODO: skim.1 will only be added next release
+	#install -Dm644 shell/skim.1 -t "$pkgdir"/usr/share/man/man1/
+
+	install -Dm644 plugin/skim.vim -t "$pkgdir"/usr/share/vim/vimfiles/plugin
+
+	install -Dm644 shell/completion.bash "$pkgdir"/usr/share/bash-completions/completions/sk
+	install -Dm644 shell/completion.zsh "$pkgdir"/usr/share/zsh/site-finctions/_sk
+
+	install -Dm644 shell/key-bindings.* -t "$pkgdir"/usr/share/"$pkgname"
+}
+
+vim() {
+	install -d "$subpkgdir"/usr/share
+	mv "$pkgdir"/usr/share/vim "$subpkgdir"/usr/share
+}
+
+tmux() {
+	install -d "$subpkgdir"/usr/bin
+	mv "$pkgdir"/usr/bin/sk-tmux "$subpkgdir"/usr/bin
+}
+
+bash() {
+	install -d "$subpkgdir"/usr/share
+	mv "$pkgdir"/usr/share/bash-completions "$subpkgdir"/usr/share
+}
+zsh() {
+	install -d "$subpkgdir"/usr/share
+	mv "$pkgdir"/usr/share/zsh "$subpkgdir"/usr/share
+}
+
+bashkey() {
+	install -d "$subpkgdir"/usr/share/"$pkgname"
+	mv "$pkgdir"/usr/share/"$pkgname"/key-bindings.bash "$subpkgdir"/usr/share/"$pkgname"
+}
+fishkey() {
+	install -d "$subpkgdir"/usr/share/"$pkgname"
+	mv "$pkgdir"/usr/share/"$pkgname"/key-bindings.fish "$subpkgdir"/usr/share/"$pkgname"
+}
+zshkey() {
+	install -d "$subpkgdir"/usr/share/"$pkgname"
+	mv "$pkgdir"/usr/share/"$pkgname"/key-bindings.zsh "$subpkgdir"/usr/share/"$pkgname"
+}
+
+sha512sums="018962a728b9729b51afdc8975cddeceec84731f43b776a740ad2b4d2a479ceadd7a4d45c6eb5389ef73cdf18955a74ac85e9bbb4ad823e4d4a5d9972a4aa19d  skim-0.5.2.tar.gz"
