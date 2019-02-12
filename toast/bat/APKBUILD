@@ -3,7 +3,7 @@
 pkgname=bat
 pkgver=0.10.0
 pkgrel=0
-pkgdesc="A cat(1) clone with wings."
+pkgdesc="A cat(1) clone with wings"
 url="https://github.com/sharkdp/bat"
 arch="all"
 license="MIT Apache-2.0"
