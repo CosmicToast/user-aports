@@ -1,7 +1,7 @@
 # Contributor: Chloe Kudryavtsev <toast@toastin.space>
 # Maintainer: Chloe Kudryavtsev <toast@toastin.space>
 pkgname=bat
-pkgver=0.9.0
+pkgver=0.10.0
 pkgrel=0
 pkgdesc="A cat(1) clone with wings."
 url="https://github.com/sharkdp/bat"
@@ -10,12 +10,7 @@ license="MIT Apache-2.0"
 depends=""
 makedepends="cargo"
 install=""
-subpackages="
-	$pkgname-doc
-	$pkgname-bash-completion:bash:noarch
-	$pkgname-fish-completion:fish:noarch
-	$pkgname-zsh-completion:zsh:noarch
-	"
+subpackages="$pkgname-doc"
 source="$pkgname-$pkgver.tar.gz::https://github.com/sharkdp/$pkgname/archive/v$pkgver.tar.gz"
 builddir="$srcdir/$pkgname-$pkgver"
 
@@ -23,7 +18,6 @@ build() {
 	cd "$builddir"
 	export CARGO_HOME="$srcdir"/cargo
 	export RUSTFLAGS="-C target-feature=-crt-static"
-	export SHELL_COMPLETIONS_DIR="$builddir"/out
 	mkdir "$builddir"/out
 	cargo build \
 		--release \
@@ -43,25 +37,6 @@ package() {
 	cd "$builddir"
 	install -m755 -D target/release/bat "$pkgdir/usr/bin/$pkgname"
 	install -m644 -D doc/bat.1 "$pkgdir/usr/share/man/man1/$pkgname.1"
-
-	install -m644 -D out/bat.bash "$pkgdir/usr/share/bash-completions/completions/bat"
-	install -m644 -D out/bat.fish "$pkgdir/usr/share/fish/completions/bat.fish"
-	install -m644 -D out/_bat "$pkgdir/usr/share/zsh/site-functions/_bat"
 }
 
-bash() {
-	mkdir -p "$subpkgdir/usr/share"
-	mv "$pkgdir/usr/share/bash-completions" "$subpkgdir/usr/share/"
-}
-
-fish() {
-	mkdir -p "$subpkgdir/usr/share"
-	mv "$pkgdir/usr/share/fish" "$subpkgdir/usr/share/"
-}
-
-zsh() {
-	mkdir -p "$subpkgdir/usr/share"
-	mv "$pkgdir/usr/share/zsh" "$subpkgdir/usr/share/"
-}
-
-sha512sums="757b6fc8fa23e4781258bdeec0d17d748b91e001778f32cf3048e4716f12a855992583a5e95d9a36d491f6f206a5c8b4f68bd055b24d650b356bd001423182e1  bat-0.9.0.tar.gz"
+sha512sums="65913c7d3e504c32b157036b4418775a8a4d6dc60e45f8b6c3d26cae98fdac7f956d54caf1c5ef662b378a41479d527a71bb78de3ab11446b9be41cc8a580dbd  bat-0.10.0.tar.gz"
