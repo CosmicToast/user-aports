@@ -1,7 +1,7 @@
 # Contributor: Chloe Kudryavtsev <toast@toastin.space>
 # Maintainer: Chloe Kudryavtsev <toast@toastin.space>
 pkgname=skim
-pkgver=0.5.2
+pkgver=0.5.4
 pkgrel=0
 pkgdesc="Fuzzy finder in rust"
 url="https://github.com/lotabout/skim"
@@ -10,8 +10,8 @@ license="MIT"
 depends=""
 makedepends="cargo"
 install=""
-# TODO: next release, add -doc
 subpackages="
+	$pkgname-doc
 	$pkgname-tmux
 	$pkgname-vim-plugin:vim:noarch
 	$pkgname-bash-completion:bash:noarch
@@ -44,8 +44,7 @@ check() {
 package() {
 	cd "$builddir"
 	install -Dm755 target/release/sk bin/sk-tmux -t "$pkgdir"/usr/bin
-	# TODO: skim.1 will only be added next release
-	#install -Dm644 shell/skim.1 -t "$pkgdir"/usr/share/man/man1/
+	install -Dm644 shell/skim.1 -t "$pkgdir"/usr/share/man/man1/
 
 	install -Dm644 plugin/skim.vim -t "$pkgdir"/usr/share/vim/vimfiles/plugin
 
@@ -87,4 +86,4 @@ zshkey() {
 	mv "$pkgdir"/usr/share/"$pkgname"/key-bindings.zsh "$subpkgdir"/usr/share/"$pkgname"
 }
 
-sha512sums="018962a728b9729b51afdc8975cddeceec84731f43b776a740ad2b4d2a479ceadd7a4d45c6eb5389ef73cdf18955a74ac85e9bbb4ad823e4d4a5d9972a4aa19d  skim-0.5.2.tar.gz"
+sha512sums="f21af6c86ca6b1c4aab1b715c1c47ced1d06c45216a03493cfc3f01d7ed6ecb6e287a335d0756f4b82b97d4d22493b01598569a0529bc57983a5a4716427af83  skim-0.5.4.tar.gz"
