@@ -1,7 +1,7 @@
 # Contributor: Chloe Kudryavtsev <toast@toastin.space>
 # Maintainer: Chloe Kudryavtsev <toast@toastin.space>
 pkgname=skim
-pkgver=0.5.4
+pkgver=0.5.5
 pkgrel=0
 pkgdesc="Fuzzy finder in rust"
 url="https://github.com/lotabout/skim"
@@ -86,4 +86,4 @@ zshkey() {
 	mv "$pkgdir"/usr/share/"$pkgname"/key-bindings.zsh "$subpkgdir"/usr/share/"$pkgname"
 }
 
-sha512sums="f21af6c86ca6b1c4aab1b715c1c47ced1d06c45216a03493cfc3f01d7ed6ecb6e287a335d0756f4b82b97d4d22493b01598569a0529bc57983a5a4716427af83  skim-0.5.4.tar.gz"
+sha512sums="a6970252633e32004edc4e4cf910a5d07d1a63b11b77e56d5ddc6ad656d33ea984dc02523fbfaf5eeb58c197d95a17fb6bcdf16448d68c6a239798b3180d7aa2  skim-0.5.5.tar.gz"
