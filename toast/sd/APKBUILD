@@ -14,10 +14,11 @@ subpackages=""
 source="https://github.com/chmln/$pkgname/archive/$pkgname-$pkgver.tar.gz"
 builddir="$srcdir/$pkgname-$pkgname-$pkgver"
 
+export CARGO_HOME="$srcdir"/cargo
+export RUSTFLAGS="-C target-feature=-crt-static"
+
 build() {
 	cd "$builddir"
-	export CARGO_HOME="$srcdir"/cargo
-	export RUSTFLAGS="-C target-feature=-crt-static"
 	cargo build \
 		--release \
 		--verbose
@@ -25,8 +26,6 @@ build() {
 
 check() {
 	cd "$builddir"
-	export CARGO_HOME="$srcdir"/cargo
-	export RUSTFLAGS="-C target-feature=-crt-static"
 	cargo test --all \
 		--release \
 		--verbose
